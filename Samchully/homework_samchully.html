@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework_samchully</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+        $(function () {
+            let num = 0;
+            let open = 0;
+            $('.newscenterBtn > a').click(function (e) {
+                e.preventDefault();
+                let idx = $(this).index();
+                console.log(idx);
+                $('.slideContents').removeClass('on');
+                $('.slideContents').eq(idx).addClass('on');
+                if (num == 0) {
+                    $('.newsCenterBtn').attr("src", "images/newscenter_btn2.gif");
+                    $(this).find('img').attr("src", "images/newscenter_btn1.gif");
+                }
+            });
+            $('.galleryBtn > a').click(function (e) {
+                e.preventDefault();
+                let idx = $(this).index();
+                console.log(idx);
+                $('.gallerycontents').removeClass('on');
+                $('.gallerycontents').eq(idx).addClass('on');
+                if (num == 0) {
+                    $('.galleryBtnImg').attr("src", "images/gallery_btn1.gif");
+                    $(this).find('img').attr("src", "images/gallery_btn2.gif");
+                }
+            });
+
+            // family site
+            $('.select1').click(function(){
+                if (open == 0) {
+                    $('.fSite').css({display: 'block'});
+                    open = 1;
+                } else {
+                    $('.fSite').css({display: 'none'});
+                    open = 0;
+                }
+            })
+            
+        })
+    </script>
+</head>
+<style>
+    /* 초기화 */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    img {
+        /* width: 100%; */
+        vertical-align: top;
+    }
+
+    a {
+        color: #333;
+        text-decoration: none;
+
+    }
+
+    span {
+        word-break: keep-all;
+    }
+
+
+    /* header */
+    header {
+        position: relative;
+        height: 100px;
+        width: 100%;
+        border-bottom: 1px solid #b6b6b6;
+        background-color: #fff;
+    }
+
+    /* samchully logo */
+    #logo {
+        position: absolute;
+        left: 24%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* global navigation */
+    #gnb {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* top navigation */
+    .tNav {
+        position: absolute;
+        top: 10px;
+        right: 36%;
+        display: flex;
+    }
+
+    .tNav li:not(li:last-of-type)::after {
+        content: '|';
+        margin: 0 8px;
+        color: #aaa;
+    }
+
+    .tNav li a {
+        font-size: 13px;
+    }
+
+    .tNav li a:hover {
+        color: #0697E1;
+    }
+
+    #gnb .searchBox {
+        position: absolute;
+        top: 11px;
+        right: 520px;
+    }
+
+    #gnb .searchBox input {
+        width: 107px;
+        height: 22px;
+        border: none;
+    }
+
+    #gnb .searchBox>img {
+        position: relative;
+        top: 3px;
+    }
+
+    /* bottom navigation */
+    /* 1depth */
+    .bNav {
+        position: absolute;
+        left: 33%;
+        top: 50%;
+
+        display: flex;
+    }
+
+    .bNav>li {
+        margin: 0 8px;
+        padding-bottom: 22px;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .bNav>li>a {
+        font-size: 18px;
+        color: #000;
+        font-weight: bolder;
+    }
+
+    .bNav>li:nth-of-type(6)>a,
+    .bNav>li:nth-of-type(7)>a,
+    .bNav>li:nth-of-type(8)>a {
+        color: rgb(0, 124, 188);
+    }
+
+    .bNav>li:nth-of-type(6)::before {
+        content: '|';
+    }
+
+    .youtubeIcon img,
+    .togetherIcon img {
+        width: 30px;
+    }
+
+
+    /* 2depth */
+    .secondNav {
+        margin-top: 25px;
+        position: absolute;
+        display: none;
+        background: #fff;
+        border: 1px solid #b6b6b6;
+    }
+
+    .secondNav {
+        padding-top: 10px;
+    }
+
+    .secondNav li {
+        padding: 8px 50px 8px 16px;
+    }
+    .bNav > li:last-of-type {
+        width: 190px;
+    }
+
+    .secondNav li a {
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .secondNav li.line {
+        background: url(images/bg_line_1.gif) no-repeat center;
+        cursor: default;
+    }
+    
+    /* hover */
+    .secondNav li:not(.line):hover {
+        background: rgb(0, 124, 188);
+    }
+    .secondNav li:hover a {
+        color: #fff;
+    }
+    
+    .bNav>li:not(li:nth-of-type(9), li:nth-of-type(10)):hover {
+        border-bottom: 4px solid rgb(0, 124, 188);
+    }
+
+    .bNav>li:hover>ul {
+        display: block;
+        z-index: 999;
+    }
+    .bNav > li:hover > a {
+        color: rgb(0, 124, 188);
+    }
+
+    /* section */
+    #mainSection {
+        position: relative;
+        overflow: hidden;
+    }
+
+    #mainSection h2 {
+        position: absolute;
+        top: 13%;
+        left: 26%;
+        font-size: 2.6rem;
+    }
+
+    #mainSection .quickLinkBox {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 5%;
+        width: 980px;
+        height: 80px;
+        background-color: #00000070;
+
+    }
+
+    #mainSection .quickLinkBox ul {
+        display: flex;
+        justify-content: left;
+        line-height: 80px;
+    }
+
+    #mainSection .quickLinkBox ul li a {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    #mainSection .quickLinkBox p {
+        display: inline-block;
+    }
+
+    #mainSection .quickLinkBox li {
+        margin: 0 16px;
+    }
+
+    #mainSection .quickLinkBox li:first-of-type {
+        padding-left: 10px;
+    }
+
+    #mainSection .quickLinkBox ul li a {
+        font-size: 15px;
+    }
+
+    #mainSection .quickLinkBox li a img {
+        position: relative;
+        top: 20px;
+        padding-right: 4px;
+    }
+
+    #mainSection .quickLinkBox .rightQuick {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 5%;
+        height: 43px;
+        line-height: 43px;
+        border-left: 1px solid #ddd;
+        padding-left: 16px;
+
+    }
+
+    #mainSection .quickLinkBox .rightQuick p {
+        color: #fff;
+        padding-right: 4px;
+    }
+
+    #mainSection .quickLinkBox .rightQuick input {
+        height: 40px;
+    }
+
+    #mainSection .quickLinkBox .rightQuick input:first-of-type {
+        width: 140px;
+        padding: 4px 8px;
+    }
+
+    #mainSection .quickLinkBox .rightQuick input:last-of-type {
+        width: 120px;
+        margin-right: -30px;
+        background: rgb(0, 124, 188);
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    #mainSection .quickLinkBox .rightQuick img {
+        position: absolute;
+        right: 105px;
+        top: 15px;
+    }
+
+    /* section2~3 공통 */
+    .section2,
+    .section3 {
+        overflow: hidden;
+        width: 100%;
+        height: 250px;
+    }
+
+    .section2 {
+        position: relative;
+    }
+
+    /* section2 */
+    .section2 .mainBlock .mainBlock_img {
+        position: relative;
+        left: 462px;
+    }
+
+    .section2 .mainBlock .slideBox {
+        position: relative;
+        left: 702px;
+        top: -250px;
+        width: 500px;
+        height: 250px;
+        background: #0697E1;
+        padding: 40px 30px 0px 30px;
+    }
+
+    .section2 .mainBlock .slideBox>a {
+        color: #fff;
+        font-size: 16px;
+    }
+
+    .section2 .mainBlock .slideBox .newscenterBtn {
+        position: absolute;
+        top: 40px;
+        right: 30px;
+        width: 119px;
+        height: 12px;
+    }
+
+    .section2 .mainBlock .slideBox .newscenterBtn>a>img {
+        width: 12px;
+        height: 12px;
+    }
+
+    .section2 .mainBlock .slideBox .newscenter_slide {
+        padding-top: 27px;
+    }
+
+    .section2 .mainBlock .slideBox .newscenter_slide .slideContents {
+        position: absolute;
+    }
+
+    .section2 .mainBlock .slideBox .newscenter_slide .slideContents>a span {
+        color: #fff;
+    }
+
+    .section2 .mainBlock .slideBox .newscenter_slide .slideContents>a span:first-of-type {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 200px;
+        line-height: 28px;
+        font-size: 20px;
+    }
+
+    .section2 .mainBlock .slideBox .newscenter_slide .slideContents {
+        opacity: 0;
+    }
+
+    .section2 .mainBlock .slideBox .newscenter_slide .slideContents.on {
+        opacity: 1;
+        transition: 1s;
+    }
+
+    .section2 .mainBlock .slideBox .date {
+        position: absolute;
+        left: 0;
+        top: 98px;
+    }
+
+    .section2 .mainBlock .slideBox .newscenter_slide img {
+        position: absolute;
+        left: 240px;
+        top: 0;
+        width: 200px;
+        height: 133px;
+    }
+
+    .section2 .mainBlock .noticeBox {
+        position: absolute;
+        top: 0;
+        left: 1202px;
+        width: 100%;
+        height: 250px;
+        padding: 40px 0 0 30px;
+        background: #007CBC;
+    }
+
+    .section2 .mainBlock .noticeBox>a {
+        color: #fff;
+    }
+
+    .section2 .mainBlock .noticeBox img {
+        margin-left: 130px;
+        cursor: pointer;
+    }
+
+    .section2 .mainBlock .noticeBox ul {
+        padding: 9px 0 0;
+        display: block;
+        height: 134px;
+        width: 210px;
+    }
+
+    .section2 .mainBlock .noticeBox ul li {
+        width: 210px;
+        padding-top: 21px;
+        word-break: keep-all;
+    }
+
+    .section2 .mainBlock .noticeBox ul li>a {
+        color: #fff;
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    /* section3 */
+    .section3 {
+        position: relative;
+        background: rgb(240, 243, 244);
+    }
+
+    .section3 .story {
+        position: absolute;
+        left: 462px;
+        width: 240px;
+        height: 250px;
+        padding: 37px 0 0 10px;
+        font-size: 14px;
+        font-weight: lighter;
+        background: url(images/bg_stroy_1.jpg) no-repeat;
+    }
+
+    .section3 .story:hover {
+        color: #0697E1;
+    }
+
+    .section3 .story strong {
+        font-size: 22px;
+        line-height: 23px;
+        padding-top: 11px;
+    }
+
+    .section3 .slideBox {
+        position: relative;
+        left: 702px;
+        width: 500px;
+        height: 250px;
+        padding: 40px 30px 0px 30px;
+    }
+
+    .section3 .slideBox>a {
+        font-weight: bold;
+    }
+
+    .section3 .slideBox .galleryBtn {
+        position: absolute;
+        top: 40px;
+        right: 30px;
+        width: 119px;
+        height: 12px;
+    }
+
+    .section3 .slideBox .galleryBtn>a>img {
+        width: 12px;
+        height: 12px;
+    }
+
+    .section3 .slideBox .gallery {
+        position: relative;
+        padding-top: 27px;
+    }
+
+    .section3 .slideBox .gallery .gallerycontents {
+        position: absolute;
+        opacity: 0;
+    }
+
+    .section3 .slideBox .gallery .gallerycontents.on {
+        opacity: 1;
+        transition: 1s;
+    }
+
+    .section3 .slideBox .gallery li>a span:first-of-type {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 200px;
+        line-height: 28px;
+        font-size: 20px;
+        font-weight: lighter;
+    }
+
+    .section3 .slideBox .date {
+        position: absolute;
+        left: 0;
+        top: 98px;
+    }
+
+    .section3 .slideBox .gallery li a img {
+        position: absolute;
+        left: 240px;
+        top: 0;
+        width: 200px;
+        height: 133px;
+    }
+
+    .section3 .story strong {
+        display: block;
+    }
+
+    .section3 .slide {
+        position: relative;
+        top: -250px;
+        left: 1202px;
+        width: 240px;
+        height: 250px;
+        cursor: pointer;
+
+    }
+
+    .section3 .slide .btns {
+        position: absolute;
+        top: 40px;
+        right: 0;
+    }
+
+    .section3 .slideBox .gallery:hover .gallerycontents>a span {
+        color: #0697E1;
+    }
+
+    .section3 .slideBox a:hover {
+        color: #0697E1;
+    }
+
+    /* section4 */
+    .section4 .main_etcLink {
+        display: flex;
+        justify-content: space-between;
+        width: 980px;
+        height: 140px;
+        margin: 0 auto;
+        padding-top: 39px;
+    }
+
+    .section4 .main_etcLink li {
+        position: relative;
+        display: block;
+        width: 135px;
+        height: 101px;
+        /* padding: 39px 0 0 20px; */
+        line-height: 18px;
+    }
+
+    .section4 .main_etcLink li strong {
+        display: block;
+        width: 155px;
+        font-size: 15px;
+        color: #555;
+        padding-bottom: 6px;
+    }
+
+    .section4 .main_etcLink li a span {
+        font-size: 12px;
+        display: block;
+        width: 130px;
+        color: #757575;
+        word-break: normal;
+    }
+
+    .section4 .main_etcLink li>img {
+        position: absolute;
+        top: 0;
+        right: -5px;
+    }
+
+    .section4 .main_etcLink li:nth-of-type(4) .etc_number {
+        margin-top: 5px;
+    }
+
+    .section4 .main_etcLink li:nth-of-type(4)>img {
+        right: -20px;
+    }
+
+    .section4 .main_etcLink li:nth-of-type(5) img {
+        top: 10px;
+        right: -25px;
+    }
+
+    .section4 .main_etcLink li:last-of-type img {
+        right: -30px;
+    }
+
+    .section4 .main_etcLink li a:hover strong,
+    .section4 .main_etcLink li a:hover span {
+        color: #0697E1;
+    }
+
+    /* footer */
+    .footer {
+        position: relative;
+        width: 100%;
+        height: 151px;
+        background: #495860;
+        color: #aaa;
+    }
+
+    .footer .inbox {
+        display: block;
+        width: 980px;
+        margin: 0 auto;
+    }
+
+    .footer .inbox > ul {
+        display: flex;
+        padding: 27px 0 0 150px;
+    }
+
+    .footer .inbox > ul li {
+        height: 33px;
+    }
+
+    .footer .inbox > ul li a {
+        color: #aaa;
+        font-size: 14px;
+    }
+
+    .footer .inbox > ul li:not(li:last-of-type)::after {
+        content: "|";
+        color: #aaa;
+        padding: 0 10px;
+    }
+
+    .footer .inbox>ul li a:hover {
+        color: #fff;
+    }
+
+    .footer .footer_logo {
+        position: relative;
+        top: -25px;
+    }
+
+    .footer address,
+    .footer p {
+        font-size: 12px;
+        font-style: normal;
+        position: relative;
+        top: -10px;
+        left: 150px;
+    }
+
+    .footer .etc {
+        width: 500px;
+        position: absolute;
+        right: 450px;
+        bottom: 10px;
+    }
+
+    .footer .etc .img1,
+    .footer .etc .img2,
+    .footer .etc .img3 {
+        width: 138px;
+    }
+
+    /* 패밀리사이트 */
+    .footer .fs {
+        width: 182px;
+        height: 30px;
+        background: #fff;
+        line-height: 30px;
+        position: absolute;
+        top: 25px;
+        right: 500px;
+        cursor: pointer;
+        padding: 0px 8px;
+    }
+    .footer .fs span {
+        color: #000;
+    }
+    .footer .fs .fSite {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: -150px;
+        /* top: 0px; */
+        width: 182px;
+        height: 150px;
+        background: #fff;
+        overflow-y:scroll;
+    }
+    .footer .fs .fSite li {
+        padding: 4px 8px;
+    }
+    .footer .fs .select1 {
+        position: absolute;
+        left: 154px;
+        top: 0;
+    }
+    .footer .fs .select2 {
+        position: absolute;
+        left: 190px;
+        top: 0;
+    }
+</style>
+
+<body>
+    <!-- header -->
+    <header>
+        <a href="#">
+            <h1 id="logo">
+                <img src="images/samchully.gif" alt="samchullyLogo">
+            </h1>
+        </a>
+        <!-- global navigation -->
+        <nav id="gnb">
+            <!-- top navigation -->
+            <ul class="tNav">
+                <li><a href="#">로그인</a></li>
+                <li><a href="#">회원가입</a></li>
+                <li><a href="#">사이트맵</a></li>
+                <li><a href="#">English</a></li>
+            </ul>
+            <div class="searchBox">
+                <input type="text" placeholder="검색어 입력">
+                <img src="images/topSearch.gif" alt="searchIcon">
+            </div>
+            <!-- bottom navigation -->
+            <ul class="bNav">
+                <!-- 1depth -->
+                <li>
+                    <a href="#">기업소개</a>
+                    <!-- 2depth -->
+                    <ul class="secondNav">
+                        <li><a href="#">그룹소개</a></li>
+                        <li><a href="#">CEO 인사말</a></li>
+                        <li><a href="#">연혁</a></li>
+                        <li><a href="#">CI</a></li>
+                        <li><a href="#">안전보건경영</a></li>
+                        <li><a href="#">고객만족</a></li>
+                        <li><a href="#">사회공헌</a></li>
+                        <li><a href="#">GWP</a></li>
+                        <li><a href="#">찾아오시는 길</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">사업소개</a>
+                    <ul class="secondNav">
+                        <li><a href="#">도시가스사업</a></li>
+                        <li><a href="#">발전 및 집단에너지사업</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">R&D</a>
+                    <ul class="secondNav">
+                        <li><a href="#">탄소중립연구소 소개</a></li>
+                        <li><a href="#">연구 현황</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">투자정보</a>
+                    <ul class="secondNav">
+                        <li><a href="#">지배구조</a></li>
+                        <li><a href="#">재무정보</a></li>
+                        <li><a href="#">공서/공고</a></li>
+                        <li><a href="#">IR자료실</a></li>
+                        <li><a href="#">ESG</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">홍보센터</a>
+                    <ul class="secondNav">
+                        <li><a href="#">뉴스센터</a></li>
+                        <li><a href="#">홍보영상</a></li>
+                        <li><a href="#">사보</a></li>
+                        <li><a href="#">Annual Report</a></li>
+                        <li><a href="#">PR Libray</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">고객센터</a>
+                    <ul class="secondNav">
+                        <li><a href="#">공지사항</a></li>
+                        <li><a href="#">안내</a></li>
+                        <li><a href="#">조회/납부</a></li>
+                        <li><a href="#">신청</a></li>
+                        <li><a href="#">문의</a></li>
+                        <li class="line"></li>
+                        <li><a href="#">전기(광명 역세권)</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">인재채용</a>
+                </li>
+                <li>
+                    <a href="#">윤리경영</a>
+                    <ul class="secondNav">
+                        <li><a href="#">윤리상담/제보센터</a></li>
+                        <li><a href="#">윤리규정</a></li>
+                        <li><a href="#">윤리실천활동</a></li>
+                    </ul>
+                </li>
+                <li class="youtubeIcon"><a href="#"><img src="images/youtubeIcon.jpg" alt="youtubeIcon"></a></li>
+                <li class="togetherIcon"><a href="#"><img src="images/togetherIcon.jpg" alt="togetherIcon"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="mainSection" class="section section1">
+        <img src="images/mainImg.jpg" alt="mainImg">
+        <h2>신뢰와 나눔 속에<br>사랑 받는 기업으로</h2>
+        <div class="quickLinkBox">
+            <ul>
+                <li><a href="#"><img src="images/quickIcon1.png" alt="quickIcon1">요금조회</a></li>
+                <li><a href="#"><img src="images/quickIcon2.png" alt="quickIcon2">요금납부</a></li>
+                <li><a href="#"><img src="images/quickIcon3.png" alt="quickIcon3">전출입신청</a></li>
+                <li><a href="#"><img src="images/quickIcon4.png" alt="quickIcon4">신청서양식</a></li>
+            </ul>
+            <div class="rightQuick">
+                <p>간편요금조회</p>
+                <input type="text" placeholder="납부자번호 입력">
+                <a href="#"><img src="images/searchIcon.gif" alt="searchIcon"></a>
+                <input type="submit" value="협력업체 >">
+            </div>
+        </div>
+    </section>
+    <section class="section section2">
+        <div class="mainBlock">
+            <a href="#"><img src="images/subImg.jpg" alt="subImg" class="mainBlock_img"></a>
+
+            <div class="slideBox">
+                <a href="#">뉴스센터</a>
+                <div class="newscenterBtn">
+                    <a href="#"><img src="images/newscenter_btn1.gif" alt="newscenter_btn1" class="newsCenterBtn"></a>
+                    <a href="#"><img src="images/newscenter_btn2.gif" alt="newscenter_btn1" class="newsCenterBtn"></a>
+                    <a href="#"><img src="images/newscenter_btn2.gif" alt="newscenter_btn1" class="newsCenterBtn"></a>
+                    <a href="#"><img src="images/newscenter_btn2.gif" alt="newscenter_btn1" class="newsCenterBtn"></a>
+                    <a href="#"><img src="images/newscenter_btn2.gif" alt="newscenter_btn1" class="newsCenterBtn"></a>
+                    <a href="#"><img src="images/newscenter_btn2.gif" alt="newscenter_btn1" class="newsCenterBtn"></a>
+                    <a href="#"><img src="images/newscenter_btn2.gif" alt="newscenter_btn1" class="newsCenterBtn"></a>
+                </div>
+                <!-- slide -->
+                <ul class="newscenter_slide">
+                    <li class="slideContents slideImg1 on">
+                        <a href="#">
+                            <span>천만장학회 공모전 '천만 아트 포 영' 전시회 개막</span>
+                            <br>
+                            <span class="date">2023.05.10</span>
+                            <img src="images/news_img1.jpg" alt="news_img1">
+                        </a>
+                    </li>
+                    <li class="slideContents slideImg2">
+                        <a href="#">
+                            <span>삼천리, '제57기 정기 주주총회'개최</span>
+                            <br>
+                            <span class="date">2023.03.24</span>
+                            <img src="images/news_img2.jpg" alt="news_img2">
+                        </a>
+                    </li>
+                    <li class="slideContents slideImg3">
+                        <a href="#">
+                            <span>'한국에서 가장 존경받는 기업'20년 연속 선정</span>
+                            <br>
+                            <span class="date">2023.03.07</span>
+                            <img src="images/news_img3.jpg" alt="news_img3">
+                        </a>
+                    </li>
+                    <li class="slideContents slideImg4">
+                        <a href="#">
+                            <span>미래 인재 육성의 든든한 후원자, 천만장학회</span>
+                            <br>
+                            <span class="date">2023.02.06</span>
+                            <img src="images/news_img4.jpg" alt="news_img4">
+                        </a>
+                    </li>
+                    <li class="slideContents slideImg5">
+                        <a href="#">
+                            <span>자매결연 군부대와 아름다운 우정 나눈 삼천리</span>
+                            <br>
+                            <span class="date">2023.01.20</span>
+                            <img src="images/news_img5.jpg" alt="news_img5">
+                        </a>
+                    </li>
+                    <li class="slideContents slideImg6">
+                        <a href="#">
+                            <span>삼천리, '안전보건 실천 다짐대회'개최</span>
+                            <br>
+                            <span class="date">2023.01.19</span>
+                            <img src="images/news_img6.jpg" alt="news_img6">
+                        </a>
+                    </li>
+                    <li class="slideContents slideImg7">
+                        <a href="#">
+                            <span>어려운 이웃 향해 온정담긴 손길 내미는 삼천리그룹</span>
+                            <br>
+                            <span class="date">2023.01.04</span>
+                            <img src="images/news_img7.jpg" alt="news_img7">
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="noticeBox">
+                <a href="#">
+                    공지사항
+                </a>
+                <img src="images/noticeBox_icon.gif" alt="noticeBox_icon">
+                <ul>
+                    <li>
+                        <a href="#">도시가스 요금단가 변동 (2023년 7월 1일자)</a>
+                    </li>
+                    <li>
+                        <a href="#">도시가스 요금단가 변동 (2023년 6월 1일자)</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="section section3">
+        <a href="#" class="story">
+            에너지에서 환경까지
+            <br>
+            미래를 창조하는 삼천리
+            <strong>
+                삼천리
+                <br>
+                STORY
+            </strong>
+        </a>
+        <div class="slideBox">
+            <a href="#">사회공헌갤러리</a>
+            <div class="galleryBtn">
+                <a href="#"><img src="images/gallery_btn2.gif" alt="gallery_btn1" class="galleryBtnImg"></a>
+                <a href="#"><img src="images/gallery_btn1.gif" alt="gallery_btn1" class="galleryBtnImg"></a>
+                <a href="#"><img src="images/gallery_btn1.gif" alt="gallery_btn1" class="galleryBtnImg"></a>
+                <a href="#"><img src="images/gallery_btn1.gif" alt="gallery_btn1" class="galleryBtnImg"></a>
+                <a href="#"><img src="images/gallery_btn1.gif" alt="gallery_btn1" class="galleryBtnImg"></a>
+                <a href="#"><img src="images/gallery_btn1.gif" alt="gallery_btn1" class="galleryBtnImg"></a>
+                <a href="#"><img src="images/gallery_btn1.gif" alt="gallery_btn1" class="galleryBtnImg"></a>
+            </div>
+            <ul class="gallery">
+                <li class="gallerycontents galleryImg1 on">
+                    <a href="#">
+                        <span>Clean Day (2023-04)</span>
+                        <br>
+                        <span class="date">2023.04.27</span>
+                        <img src="images/storyImg1.jpg" alt="news_img1">
+                    </a>
+                </li>
+                <li class="gallerycontents galleryImg2">
+                    <a href="#">
+                        <span>자매결연 군부대 방문(2023-01)</span>
+                        <br>
+                        <span class="date">2023.01.19</span>
+                        <img src="images/storyImg2.jpg" alt="news_img2">
+                    </a>
+                </li>
+                <li class="gallerycontents galleryImg3">
+                    <a href="#">
+                        <span>사랑나눔의 날(2022-12)</span>
+                        <br>
+                        <span class="date">2022.12.23</span>
+                        <img src="images/storyImg3.jpg" alt="news_img3">
+                    </a>
+                </li>
+                <li class="gallerycontents galleryImg4">
+                    <a href="#">
+                        <span>자매결연 군부대 방문(2022-01)</span>
+                        <br>
+                        <span class="date">2022.01.26</span>
+                        <img src="images/storyImg4.jpg" alt="news_img4">
+                    </a>
+                </li>
+                <li class="gallerycontents galleryImg5">
+                    <a href="#">
+                        <span>사랑나눔의 날 (2021-12)</span>
+                        <br>
+                        <span class="date">2021.12.22</span>
+                        <img src="images/storyImg5.png" alt="news_img5">
+                    </a>
+                </li>
+                <li class="gallerycontents galleryImg6">
+                    <a href="#">
+                        <span>자매결연 군부대 방문(2021-02)</span>
+                        <br>
+                        <span class="date">2021.02.09</span>
+                        <img src="images/storyImg6.png" alt="news_img6">
+                    </a>
+                </li>
+                <li class="gallerycontents galleryIm7">
+                    <a href="#">
+                        <span>자매결연 군부대 방문(2020-01)</span>
+                        <br>
+                        <span class="date">2020.01.28</span>
+                        <img src="images/storyImg7.jpg" alt="news_img7">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="slide">
+            <div class="slideImg">
+                <img src="images/bg_report_1.jpg" alt="bg_report_1">
+            </div>
+            <div class="btns">
+                <img src="images/bg_together1.gif" alt="bg_together1">
+                <img src="images/bg_together2.gif" alt="bg_together2">
+            </div>
+        </div>
+
+    </section>
+    <section class="section section4">
+        <ul class="main_etcLink">
+            <li>
+                <a href="#">
+                    <strong>고객의 소리</strong>
+                    <span>
+                        고객님의 궁금한
+                        <br>
+                        점을 남겨주세요.
+                    </span>
+                </a>
+                <img src="images/etc_icon1.gif" alt="etc_icon1">
+            </li>
+            <li>
+                <a href="#">
+                    <strong>이용안내</strong>
+                    <span>
+                        도시가스 관련
+                        <br>
+                        안내사항입니다.
+                    </span>
+                </a>
+                <img src="images/etc_icon2.gif" alt="etc_icon2">
+            </li>
+            <li>
+                <a href="#">
+                    <strong>연결비용 안내</strong>
+                    <span>
+                        가스렌지 연결
+                        <br>
+                        비용 안내입니다.
+                    </span>
+                </a>
+                <img src="images/etc_icon3.gif" alt="etc_icon3">
+            </li>
+            <li>
+                <a href="#">
+                    <strong>고객센터</strong>
+                    <img src="images/etc_number.gif" alt="etc_number" class="etc_number">
+                </a>
+                <img src="images/etc_icon4.gif" alt="etc_icon4">
+            </li>
+            <li>
+                <a href="#">
+                    <strong>가스사고 신고접수</strong>
+                    <span>
+                        가스 신고를 접수
+                        <br>
+                        하실 수 있습니다.
+                    </span>
+                </a>
+                <img src="images/etc_icon5.gif" alt="etc_icon5">
+            </li>
+            <li>
+                <a href="#">
+                    <strong>윤리 제보센터</strong>
+                    <span>
+                        부정 및 비리행위 등에
+                        <br>
+                        대한 제보 센터입니다.
+                    </span>
+                </a>
+                <img src="images/etc_icon6.jpg" alt="etc_icon6">
+            </li>
+        </ul>
+    </section>
+    <!-- footer -->
+    <footer class="footer">
+        <div class="inbox">
+            <ul>
+                <li>
+                    <a href="#">개인정보 처리 방침</a>
+                </li>
+                <li>
+                    <a href="#">메일주소 무단수집거부</a>
+                </li>
+                <li>
+                    <a href="#">신용정보 조회사실 통보공시</a>
+                </li>
+                <li>
+                    <a href="#">이용약관</a>
+                </li>
+            </ul>
+            <img src="images/bg_footer_1.gif" alt="footerLogo" class="footer_logo">
+            <address>07328 서울특별시 영등포구 국제금융로 6길 42 (주)삼천리</address>
+            <p>Copyright samchully Corp. All rights reserved.</p>
+            <div class="etc">
+                <img src="images/footer_img1.jpg" alt="footer_img1">
+                <img src="images/footer_img2.gif" alt="footer_img2" class="img1">
+                <img src="images/footer_img3.gif" alt="footer_img3" class="img2">
+                <img src="images/footer_img4.png" alt="footer_img4" class="img3">
+            </div>
+            <div class="fs">
+                <span>Family Site</span>
+                <ul class="fSite">
+                    <li><a href="#">Family Site</a></li>
+                    <li><a href="#">(주)ST International</a></li>
+                    <li><a href="#">(주)삼천리 ENG</a></li>
+                    <li><a href="#">(주)삼천리 ES</a></li>
+                    <li><a href="#">(주)HUCES</a></li>
+                    <li><a href="#">SL&amp;C</a></li>
+                    <li><a href="#">삼천리자산운용(주)</a></li>
+                    <li><a href="#">(주)삼천리모터스</a></li>
+                    <li><a href="#">천만장학회</a></li>
+                </ul>
+                <img src="images/arrow_select.gif" alt="arrow_select" class="select1">
+                <img src="images/select_img.gif" alt="select_img" class="select2">
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
