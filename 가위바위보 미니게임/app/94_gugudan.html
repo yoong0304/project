@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단을 맞춰봐!_이재웅</title>
+    <style>
+        @font-face {
+            font-family: 'SUITE-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 10px;
+        }
+
+        body {
+            font: 1.5rem/1.8 'SUITE-Regular', sans-serif;
+        }
+
+        #mainPage {
+            /* position: fixed;
+            left: 60px;
+            top: 20%; */
+            margin: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 32px;
+            margin-top: 150px;
+        }
+
+        input {
+            width: 70%;
+            font-size: 15px;
+            border: 1px solid #444;
+            margin: 8px 0;
+            padding: 16px;
+        }
+
+        button {
+            padding: 8px 16px;
+            margin: 8px 0;
+        }
+
+        #guguDan {
+            border: 2px solid #87cefa;
+            margin: 20px 0 10px 0;
+            padding: 20px 0;
+            display: none;
+            font-size: 2rem;
+        }
+
+        #timeout {
+            text-align: left;
+            margin-bottom: 8px;
+        }
+
+        #progressbar {
+            width: 100%;
+            background: #ccc;
+            margin-bottom: 10px;
+        }
+
+        #timeBar {
+            width: 100%;
+            text-indent: -9999px;
+            background: #000;
+            display: none;
+        }
+
+        @keyframes timeoutbar {
+            0% {
+                width: 100%;
+            }
+
+            100% {
+                width: 0%;
+            }
+        }
+
+        #userInputAnswer {
+            height: 20px;
+            display: none;
+        }
+
+        #btnAnswer {
+            /* height: 30px; */
+            display: none;
+        }
+    </style>
+</head>
+<!-- 남은시간 옆에 60 ~ 1초 미구현 -->
+<!-- 타이머가 끝나면 게임종료 미구현 -->
+<!-- 난이도 선택 후 다른 난이도 선택 불가 미구현 -->
+
+<body>
+    <div id="mainPage">
+        <h1>구구단을 맞춰봐!</h1>
+        <p>난이도를 선택하세요</p>
+
+        <!-- 난이도 선택 버튼 -->
+        <button id="btnMineEasy">쉬움</button>
+        <button id="btnMineNormal">보통</button>
+        <button id="btnMineHard">어려움</button>
+
+        <!-- 구구단 문제가 나오는 구역 -->
+        <div id="guguDan">
+            <p></p>
+        </div>
+
+        <!-- 남은시간과 시간바 -->
+        <p id="timeout">남은시간<span></span></p>
+        <div id="progressbar">
+            <!-- <progress id="timeBar" value="100" min = "0"></progress> -->
+            <div id="timeBar">타이머</div>
+        </div>
+
+        <!-- 정답을 입력하고 확인하는 버튼 -->
+        <input type="text" placeholder="정답을 입력하세요." id="userInputAnswer" inputmode="numeric">
+        <button id="btnAnswer">정답 확인</button>
+    </div>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.0.js"></script>
+    <script>
+
+        // 난이도 버튼
+        const btnEasy = document.getElementById('btnMineEasy');
+        const btnNormal = document.getElementById('btnMineNormal');
+        const btnHard = document.getElementById('btnMineHard');
+
+        // 정답 확인 버튼
+        const answerBtn = document.getElementById('btnAnswer');
+        // 구구단 문제
+        const guguDan = document.getElementById('guguDan');
+        // 시간 바
+        const timeBar = document.getElementById('timeBar');
+        // 유저가 입력한 답
+        const answer = document.getElementById('userInputAnswer');
+
+
+        // 문제에 대한 답을 저장할 변수
+        let result;
+
+        // 사용자가 숫자가 아닌 문자를 입력하면 공백으로 변경
+        answer.addEventListener("keyup", function (e) {
+            // 숫자가 아닌 문자를 모두 선택하는 정규식
+            const regExp = /[^0-9]/g;
+
+            if (regExp.test(e.target.value)) {
+                e.target.value = "";
+            }
+        });
+        // 쉬움 단 랜덤 지정 1 ~ 10
+        // +1을 floor안에 넣으면 가끔 0이 출려되서 밖으로 뺐음
+        let x = Math.floor(Math.random() * 10) + 1;
+        let y = Math.floor(Math.random() * 10) + 1;
+        // 보통 단 랜덤 지정 10 ~ 99
+        let xx = Math.floor(Math.random() * 90) + 10;
+        let yy = Math.floor(Math.random() * 90) + 10;
+        // 어려움 단 랜덤 지정 100 ~ 999
+        let xxx = Math.floor(Math.random() * 900) + 100;
+        let yyy = Math.floor(Math.random() * 900) + 100;
+
+        // 쉬움 버튼 클릭
+        btnEasy.onclick = function () {
+            // 문제
+            guguDan.innerText = x + ' X ' + y + ' = ?' /* + (x * y) */;
+            // result변수에 답을 저장
+            result = x * y;
+
+            // 난이도 버튼을 누르면 문제, 정답 입력창, 정답 확인 버튼이 보이게 설정
+            guguDan.style.display = 'block';
+            answer.style.display = 'inline-block';
+            answerBtn.style.display = 'inline-block';
+
+            btnNormal.style.display = 'none';
+            btnHard.style.display = 'none';
+
+            // 타임 바 애니메이션
+            timeBar.style.animation = 'timeoutbar 60s linear';
+            timeBar.style.display = 'block';
+        }
+        // 보통 버튼 클릭
+        btnNormal.onclick = function () {
+
+            guguDan.innerText = xx + ' X ' + yy + ' = ?' /* + (xx * yy) */;
+            result = xx * yy;
+
+            // 난이도 버튼을 누르면 문제, 정답 입력창, 정답 확인 버튼이 보이게 설정
+            guguDan.style.display = 'block';
+            answer.style.display = 'inline-block';
+            answerBtn.style.display = 'inline-block';
+
+            btnEasy.style.display = 'none';
+            btnHard.style.display = 'none';
+
+            // 타임 바 애니메이션
+            timeBar.style.animation = 'timeoutbar 60s linear';
+            timeBar.style.display = 'block';
+
+            console.log(width);
+        }
+        // 어려움 버튼 클릭
+        btnHard.onclick = function () {
+            guguDan.innerText = xxx + ' X ' + yyy + ' = ?' /* + (xxx * yyy) */;
+            result = xxx * yyy;
+
+            // 난이도 버튼을 누르면 문제, 정답 입력창, 정답 확인 버튼이 보이게 설정
+            guguDan.style.display = 'block';
+            answer.style.display = 'inline-block';
+            answerBtn.style.display = 'inline-block';
+            
+            btnEasy.style.display = 'none';
+            btnNormal.style.display = 'none';
+
+            // 타임 바 애니메이션
+            timeBar.style.animation = 'timeoutbar 60s linear';
+            timeBar.style.display = 'block';
+        }
+
+        answerBtn.onclick = function () {
+            if (result === Number(answer.value)) {
+                location.href = '95_result_win.html';
+                alert('😊축하합니다~ 맞추셨습니다. ');
+            } else {
+                location.href = '96_result_lose.html';
+                alert('😢틀렸습니다. 아쉽네요ㅜ');
+            }
+
+        }
+    </script>
+</body>
+
+</html>

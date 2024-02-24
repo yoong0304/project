@@ -1,0 +1,218 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700&display=swap');
+/* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'); */
+
+/* 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 10px;
+}
+img {
+    width: 100%;
+}
+
+
+li {
+    list-style: none;
+}
+body {
+    font: 1.5rem/1.8 'Noto Sans KR', sans-serif;
+    color: #333;
+}
+a {
+    text-decoration: none;
+    color: #777;
+}
+
+/* 공통 */
+#wrap {
+    width: 1200px;
+    /* 가로 가운데 맞춤 */
+    margin: 0 auto;
+}
+
+
+/* 헤더 */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+/* 로고 */
+.logo {
+    width: 200px;
+    background: lightpink;
+}
+
+/* 내비게이션 */
+nav .main {
+    display: flex;
+}
+nav li {
+    width: 150px;
+    margin-left: 8px;
+    text-align: center  ;
+    background: #672f2e;
+}
+nav .main > li > a {
+    font-size: 1.8rem;
+    color: aliceblue;
+}
+nav .sub {
+    display: none;
+}
+
+
+
+/* 슬라이드 */
+#slide {
+    overflow: hidden;
+    height: 300px;
+    background: lightcoral;
+}
+
+#slide ul {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 400%;
+    display: flex;
+    animation: slide 9s infinite;
+}
+#slide li {
+    width: 100%;
+}
+@keyframes slide {
+    0% {left: 0;}
+    5% {left: -100%;}
+    33% {left: -100%;}
+    38% {left: -200%;}
+    66% {left: -200%;}
+    71% {left: -300%;}
+    99.99% {left: -300%;}
+    100% {left: 0;}
+}
+
+/* 메인 컨텐츠 */
+#contents {
+    display: flex;
+    padding: 8px 0;
+}
+#contents > div:not(:nth-of-type(3)) {
+    margin-right: 5px;
+}
+#contents > div {
+    width: 400px;
+    height: 200px;
+}
+/* 탭 메뉴 */
+.tabs {
+    padding: 24px 24px 24px 0;
+}
+
+.tabs input, .tabs div {
+    display: none;
+}
+
+#btn1:checked ~ #tab1, #btn2:checked ~ #tab2 {
+    display: block;
+}
+/* 탭 메뉴 - 제목/버튼 */
+.tabs label {
+    display: inline-block;
+    color: #fff;
+    background: #672f2e;
+    padding: 4px 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 400;
+
+}
+#btn1:checked + label, #btn2:checked + label {
+    background: #000;
+}
+/* 탭 메뉴 - 공지사항 */
+#tab1 li {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted #ccc;
+}
+#tab1 a {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    /* 말줄임 ...효과 */
+    text-overflow: ellipsis;
+}
+#tab1 a:hover {
+    color: #333;
+}
+/* 탭 메뉴 - 갤러리 */
+#tab2  ul {
+    display: flex;
+    justify-content: space-between;
+}
+#tab2 a {
+    display: inline-block;
+    width: 110px;
+}
+/* 배너 */
+.banner {
+    background: lavender;
+}
+/* 바로가기 */
+.shortcut {
+    background: greenyellow;
+}
+
+
+
+/* 푸터 */
+footer {
+    display: flex;
+    color: #777;
+    padding-left: 350px;
+    background: #333 url(../images/logo2.png) no-repeat 30px 50%;
+}
+
+.addr {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1000px;
+    height: 100px;
+}
+
+.sns {
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+    /* flex: glow shrink basis */
+    flex: 0 0 200px;
+    height: 100px;
+}
+.sns a {
+    color: #555;
+    margin: 0 8px;
+    transition: .3s;
+}
+
+.sns a:nth-of-type(1):hover {
+    transform: scale(1.2, 1.2);
+    color: #395498;
+}
+.sns a:nth-of-type(2):hover {
+    transform: scale(1.2, 1.2);
+    color: #1c9cea;
+}
+.sns a:nth-of-type(3):hover {
+    transform: scale(1.2, 1.2);
+    color: #f60065;
+}

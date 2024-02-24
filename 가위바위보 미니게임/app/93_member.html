@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단을 맞춰봐!_이재웅</title>
+    <style>
+        @font-face {
+            font-family: 'SUITE-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /* 가로 해상도: 390px */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font: 10px;
+        }
+
+        body {
+            font: 1.5rem/1.8 'SUITE-Regular', sans-serif;
+        }
+
+        #wrap {
+            /* position: fixed; */
+            /* top: 100px; */
+            margin: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 32px;
+            margin-top: 150px;
+        }
+
+        p {
+            font-size: 14px;
+            color: red;
+        }
+
+        input {
+            width: 100%;
+            font-size: 20px;
+            border: 1px solid #444;
+            margin: 8px 0;
+            padding: 16px;
+        }
+
+        button {
+            width: 100%;
+            margin: 8px 0;
+            padding: 8px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 전체 프레임 -->
+    <div id="wrap">
+        <h1>회원가입</h1>
+        <!-- 가입 할 아이디와 비밀번호 입력 -->
+        <input type="text" placeholder="아이디를 입력하세요." id="memberId">
+        <input type="text" placeholder="비밀번호를 입력하세요." id="memberPw">
+        <!-- 가입 버튼 -->
+        <button>가입 하기</button>
+        <p>아이디와 패스워드를 입력후 가입 버튼을 누르세요.</p>
+    </div>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.0.js"></script>
+    <script>
+        const memberId = document.querySelector('#memberId');
+        const memberPw = document.querySelector('#memberPw');
+        const memberBtn = document.querySelector('button');
+
+        // 로그인 시 입력한 아이디/패스워드
+
+        memberBtn.onclick = member;
+
+        function member() {
+            let userId = memberId.value;
+            let userPw = memberPw.value;
+            location.href = 'index.html?' + userId + '/' + userPw;
+            // localStorage.setItem(id,userId);
+            // localStorage.setItem(pw,userPw);
+            // console.log(localStorage.getItem(id));
+        }
+    </script>
+</body>
+
+</html>

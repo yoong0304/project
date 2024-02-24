@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단을 맞춰봐!_이재웅</title>
+    <style>
+        @font-face {
+            font-family: 'SUITE-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /* 가로 해상도: 390px */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 10px;
+        }
+
+        body {
+            font: 1.5rem/1.8 'SUITE-Regular', sans-serif;
+        }
+
+        #wrap {
+            /* position: fixed;
+            top: 100px; */
+            margin: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 32px;
+            margin-top: 150px;
+        }
+
+        #result_win {
+            width: 100%;
+        }
+
+        #result_win img {
+            width: 100%;
+        }
+
+        p {
+            font-size: 2rem;
+        }
+
+        p:nth-of-type(2) {
+            margin-top: 6px;
+        }
+
+        #wrap>div:nth-of-type(2) {
+            margin: 20px 0;
+        }
+
+        button {
+            width: 100%;
+            margin: 8px 0;
+            padding: 8px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <h1>구구단을 맞춰봐!</h1>
+        <div id="result_win">
+            <img src="image/result_win.jpg" alt="result_win">
+        </div>
+        <div>
+            <p>😊축하합니다~</p>
+            <p>정답을 맞추셨습니다~!</p>
+        </div>
+        <button id="againBtn">다시 하기</button>
+        <button id="logoutBtn">로그 아웃</button>
+
+    </div>
+
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.0.js"></script>
+    <script>
+        againBtn.onclick = function () {
+            location.href = '94_gugudan.html';
+        }
+        logoutBtn.onclick = function () {
+            location.href = 'index.html';
+        }
+
+
+    </script>
+</body>
+
+</html>
